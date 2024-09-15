@@ -1,48 +1,39 @@
 import styles from './Search.module.css';
 import Input from './input';
 import Data from "./cities.json";
-import { useState , useEffect } from 'react';
+import { useState , useEffect} from 'react';
 
 
 
 const Search = () =>{
   
-    const [searchItem, setSearchItem] = useState('');
-    const [data, setData] = useState([Data]);
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState("");
+    const [data, setData] = useState("");
 
 
-   console.log(data)
 
     const handleChange = (e) => { 
-        const searchTerm = e.target.value;
-        setSearchItem(searchTerm)
-
-        dataFromServer.filter((data)=>{
-            //   ...
-          });
-
-        console.log(searchItem)
+        const setData = e.target.value;
+        setData(setData)
     }
 
  
-
+    useEffect(() =>{
+        if (data.trim()) {
+            setData(search);
+        }else{
+            setData("search");
+        }
+    },[search])
 
     return(
         <>
         <div  className={styles.container}>
         <Input
+        hint={data }
          handleChange={handleChange}
          />
         
-       
-        {data.map((item ,index) => {
-            return(
-                <ul className={styles.drop}>
-                <li key={index}>{item}</li>
-                </ul>
-            )
-        })}
       
         </div>
         </>
